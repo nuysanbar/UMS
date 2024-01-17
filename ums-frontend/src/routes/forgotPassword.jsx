@@ -1,3 +1,4 @@
+//Import necessary libraries
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -7,9 +8,14 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Form,redirect,NavLink} from "react-router-dom"
 import axios from 'axios'
+
+// Define an asynchronous function called action that takes an object with a request property
 export async function action({request}){
+  // Extract form data from the request
     const formData = await request.formData();
     const updates = Object.fromEntries(formData);
+    
+    // Define the API URL for the forgot password endpoint
     const apiUrl='http://localhost:3500/auth/forgotPassword/'
     const response = await axios.post(apiUrl,updates)
     console.log(response.data)

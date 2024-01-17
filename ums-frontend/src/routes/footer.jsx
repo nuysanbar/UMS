@@ -22,7 +22,7 @@ export default function Footer() {
               About Us
             </Typography>
             <Typography variant="body2" color="var(--wh)">
-              We built simple account management system
+              We built simple User management system
             </Typography>
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -30,14 +30,14 @@ export default function Footer() {
               Contact Us
             </Typography>
             <Typography variant="body2" color="var(--wh)">
-               lideta, addisababa, Ethiopia
+               Bole, addisababa, Ethiopia
             </Typography>
             <Typography variant="body2" color="var(--wh)">
-              Email: info@simpleAccountManagement.com
+              Email: abdi@simpleAccountManagement.com
             </Typography>
             
             <Typography variant="body2" color="var(--wh)">
-              Phone: +251 934 567 890
+              Phone: +251 965143905
             </Typography>
           </Grid>
           <Grid item xs={12} sm={4}>
