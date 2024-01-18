@@ -1,12 +1,16 @@
+// Import necessary modules
 import { Outlet,NavLink,Link, useLoaderData} from "react-router-dom";
 import { useState } from "react";
 import {AiOutlineSetting,AiOutlineUsergroupAdd} from "react-icons/ai"
 import {BiLogOut} from "react-icons/bi"
 import {BsCaretDown} from "react-icons/bs"
 import Footer from "../footer"
+
 export default function Admin() {
    const [classValue,setClassValue]=useState(null)
+   // Retrieve basic user data from local storage
    const basicData=JSON.parse(window.localStorage.getItem('basic_data'));
+   // Function to toggle the visibility of menu options
    function changeClassName(){
     if(classValue=="options"){
       return setClassValue(null)

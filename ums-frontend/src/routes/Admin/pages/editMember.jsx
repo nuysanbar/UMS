@@ -23,6 +23,8 @@ export async function action({request,params}){
     const formData = await request.formData();
     const updates = Object.fromEntries(formData);
     const apiUrl=`http://localhost:3500/admin/editMember/edit/${params.id}`
+
+    // Make a PUT request to the API endpoint with the updates and authorization header
     const response=await axios.put(apiUrl,updates ,{
         headers:{
             "Authorization":"Bearer "+access_token
