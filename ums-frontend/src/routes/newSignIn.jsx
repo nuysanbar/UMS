@@ -1,3 +1,4 @@
+// Import necessary modules and components from external libraries
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -13,6 +14,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Form,redirect ,NavLink} from "react-router-dom"
 import axios from 'axios'
 import jwt from 'jwt-decode'
+
+// Define an asynchronous function named 'action' that handles form submission
+export async function action({ request }) {
 export async function action({request}){
     const formData = await request.formData();
     const updates = Object.fromEntries(formData);

@@ -1,3 +1,4 @@
+//import libraries
 import { Outlet,NavLink,Link} from "react-router-dom";
 import { useState } from "react";
 import TemporaryDrawer from "./drawer";
@@ -8,6 +9,7 @@ import jwt from 'jwt-decode'
 import axios from 'axios'
 import * as React from 'react';
 import Footer from "./footer";
+
 const access_token=window.localStorage.getItem('access_token');
 export async function loader(){
     const apiUrl=`http://localhost:3500/home/profile`

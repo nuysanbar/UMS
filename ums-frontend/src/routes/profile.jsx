@@ -1,11 +1,18 @@
+// Import necessary modules and components from React, React Router, and external libraries
 import { useLoaderData,NavLink, Outlet } from "react-router-dom";
 import axios from "axios";
 import {AiFillStar,AiOutlinePhone,AiOutlineMail} from "react-icons/ai"
 import {GoLocation} from "react-icons/go"
 import {BiEdit} from 'react-icons/bi'
+
 export async function loader(){
+     // Retrieve the access token from local storage
     const access_token=window.localStorage.getItem('access_token');
+
+    // Define the API URL for fetching profile data
     const apiUrl=`http://localhost:3500/home/profile`
+
+    // Make a GET request to the API with authorization header
     const res = await axios.get(apiUrl,{
         headers: {
           'Authorization': 'Bearer ' + access_token
@@ -17,6 +24,7 @@ export async function loader(){
     return response;
 }
 export default function Profile({role}){
+    // Fetch data using the useLoaderData hook
     const response=useLoaderData()
     var page;
     if(role==3030){
