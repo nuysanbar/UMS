@@ -1,3 +1,5 @@
+//user registration or signup page
+//import usefull libraries
 import {redirect, Form,NavLink } from "react-router-dom"
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
@@ -5,10 +7,19 @@ import Button from '@mui/material/Button';
 import axios from 'axios'
 import {useState} from 'react'
 import { useEffect } from "react";
+
+
 export async function action({request}){
+     // Extract form data from the request
     const formData = await request.formData();
-    const apiUrl="http://localhost:3500/register/"
+
+    //Define the API URL for the registration endpoint
+    const apiUrl="http://localhost:3500/register/" 
+
+    // Send a POST request to the registration endpoint with the form data
     const res=await axios.post(apiUrl,formData)
+    
+     // Extract the response data from the Axios response
     const response=res.data
     console.log(response)
     return redirect('../')
