@@ -1,21 +1,25 @@
-// Import necessary modules and components from external libraries
-import React from 'react'; // Change * as React to React
+import * as React from 'react';
+import { NavLink, redirect } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Form, redirect, NavLink } from "react-router-dom";
+import { Form } from "react-router-dom";
 import axios from 'axios';
 import jwt from 'jwt-decode';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import { blue } from '@mui/material/colors';
 
-// Define an asynchronous function named 'action' that handles form submission
 export async function action({ request }) {
     const formData = await request.formData();
     const updates = Object.fromEntries(formData);
@@ -43,84 +47,107 @@ export async function action({ request }) {
     return 0;
 }
 
-// Function component for rendering the sign-in form
 function SignIn() {
-    // Theme setup
     const defaultTheme = createTheme();
+    const [showPassword, setShowPassword] = React.useState(false);
+
+    const handleTogglePassword = () => {
+        setShowPassword(!showPassword);
+    };
 
     return (
         <ThemeProvider theme={defaultTheme}>
-            <Container component="main" maxWidth="xs">
+            <Box
+                sx={{
+                    border: '1px solid #ccc',
+                    borderRadius: '8px',
+                    padding: '16px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    width: '390px',
+                    height: '370.69px',
+                    margin: 'auto',
+                    marginTop: '100px',
+                    position: 'relative',
+                    backgroundColor: 'white', // Set the background color
+                }}
+            >
                 <CssBaseline />
-                <Box
-                    sx={{
-                        marginTop: 8,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
-                >
-                    {/* Display user icon */}
-                    <Avatar sx={{ m: 1, bgcolor: 'var(--bl)' }}>
-                        <LockOutlinedIcon />
-                    </Avatar>
-                    {/* Sign-in heading */}
-                    <Typography component="h1" variant="h5">
-                        Log in
-                    </Typography>
-                    {/* Sign-in form */}
-                    <Form component="form" method='post' noValidate sx={{ mt: 1 }}>
-                        {/* Username input field */}
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="username"
-                            label="username"
-                            name="username"
-                            autoComplete="username"
-                            autoFocus
-                        />
-                        {/* Password input field */}
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Password"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                        />
-                        {/* Sign-in button */}
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
-                            style={{backgroundColor:"var(--bl)"}}
-                        >
-                            Sign In
-                        </Button>
-                        {/* Forgot password and Sign-up links */}
-                        <Grid container>
-                            <Grid item xs>
-                                <NavLink to={'/forgotPassword'} variant="body2" style={{ color: "var(--bl)" }}>
-                                    {"Forgot password?"}
-                                </NavLink>
-                            </Grid>
-                            <Grid item>
-                                <NavLink to={'/signUp'} variant="body2" style={{ color: "var(--bl)" }}>
-                                    {"Don't have an account? Sign Up"}
-                                </NavLink>
-                            </Grid>
+                <Typography component="h1" variant="h5">
+                    Log in
+                </Typography>
+                <Form component="form" method='post' noValidate sx={{ mt: 1 }}>
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="username"
+                        label={<Typography variant="body1" sx={{ fontWeight: 'bold' }}>Username</Typography>}
+                        name="username"
+                        autoComplete="username"
+                        autoFocus
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <AccountCircle />
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label={<Typography variant="body1" sx={{ fontWeight: 'bold' }}>Password</Typography>}
+                        type={showPassword ? 'text' : 'password'}
+                        id="password"
+                        autoComplete="current-password"
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <LockOutlinedIcon />
+                                </InputAdornment>
+                            ),
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        onClick={handleTogglePassword}
+                                        edge="end"
+                                    >
+                                        {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                                    </IconButton>
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 3, mb: 2 }}
+                        style={{ backgroundColor: blue }}
+                    >
+                        Login
+                    </Button>
+                    <Grid container>
+                        <Grid item xs>
+                            <NavLink to={'/forgotPassword'} variant="body2" style={{ color: "var(--bl)" }}>
+                                {"Forgot password?"}
+                            </NavLink>
                         </Grid>
-                    </Form>
-                </Box>
-                {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
-            </Container>
+                        <Grid item>
+                            <NavLink to={'/signUp'} variant="body2" style={{ color: "var(--bl)" }}>
+                                {"New user? Sign Up"}
+                            </NavLink>
+                        </Grid>
+                    </Grid>
+                </Form>
+            </Box>
         </ThemeProvider>
     );
 }
 
-export default SignIn; // Move the export statement to the bottom
+const defaultTheme = createTheme();
+export default SignIn;
