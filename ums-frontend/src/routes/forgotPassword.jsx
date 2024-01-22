@@ -1,6 +1,9 @@
 //Import necessary libraries
 import * as React from 'react';
 import Button from '@mui/material/Button';
+import EmailIcon from '@mui/icons-material/Email';
+import Icon from '@mui/material/Icon';
+import InputAdornment from '@mui/material/InputAdornment';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
@@ -38,26 +41,36 @@ export default function ForgotPassword() {
           }}
         >
             <p style={{color:"var(--bl)"}}>
-            Enter email address linked to your account and we'll send you the link to reset your password check your email
+            Enter your email for the verification process, we will send a code to your email..
           </p>
           <Form component="form" method='post' noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              type='email'
-              id="email"
-              label="email"
-              name="email"
-              autoComplete="username"
-              autoFocus
-            />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            type='email'
+            id="email"
+            label="Email"
+            name="email"
+            autoComplete="username"
+            autoFocus
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <EmailIcon>
+                    email
+                  </EmailIcon>
+                </InputAdornment>
+              ),
+            }}
+          />
+
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              style={{backgroundColor:"var(--bl)"}}
+              style={{backgroundColor:"blue"}}
             >
               continue
             </Button>
