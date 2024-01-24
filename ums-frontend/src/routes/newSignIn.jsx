@@ -38,7 +38,7 @@ export async function action({ request }) {
 
         if (userRole === "3011") {
             return redirect('/delivery/orders');
-        } else if (userRole === "3030") {
+        } else if (userRole === 3030) {
             return redirect('/admin/');
         } else {
             return redirect('/home/');
