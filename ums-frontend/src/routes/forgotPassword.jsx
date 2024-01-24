@@ -1,4 +1,4 @@
-//Import necessary libraries
+//Import necessary library
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import EmailIcon from '@mui/icons-material/Email';
