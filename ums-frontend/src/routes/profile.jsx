@@ -18,7 +18,6 @@ export async function loader(){
           'Authorization': 'Bearer ' + access_token
         }
       })
-    console.log("loader called")
     const response=res.data
     console.log(response)
     return response;
