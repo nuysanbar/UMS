@@ -19,7 +19,6 @@ export async function loader(){
         }
       })
     const response=res.data
-    console.log(response)
     return response;
 }
 export default function Profile({role}){
