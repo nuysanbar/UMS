@@ -12,7 +12,6 @@ export async function loader(){
     // Define the API URL for fetching profile data
     const apiUrl=`http://localhost:3500/home/profile`
 
-    // Make a GET request to the API with authorization header
     const res = await axios.get(apiUrl,{
         headers: {
           'Authorization': 'Bearer ' + access_token
