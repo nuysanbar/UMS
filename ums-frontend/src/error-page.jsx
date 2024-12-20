@@ -4,7 +4,7 @@ export default function ErrorPage({children}) {
   const error = useRouteError();
   console.error(error);
 
-
+// response data error
   return (
     <div id="error-page">
       {error.response.data.message && (<div style={{color:"red", textAlign:"center",width:"70%",margin:"10px auto 0"}}>
